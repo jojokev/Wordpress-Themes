@@ -1,0 +1,46 @@
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
+
+$whatsapp: #198754;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+$custom-colors: (
+  "whatsapp": $whatsapp
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$enable-cssgrid: true;
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/aos/dist/aos.css';
+@import '../node_modules/glightbox/dist/css/glightbox.min.css';
+@import './mixins.scss';
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: auto;
+}
+
+// parts
+
+@import './parts/page1.scss';
