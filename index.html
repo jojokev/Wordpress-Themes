@@ -1097,34 +1097,47 @@
     <div class="container py-5"></div>
 
 
-    <div class="container-fluid wrapper-grid-gallery">
-        <div class="grid text-center">
-            <div class="g-col-6 ">
+    <div class="container py-5"></div>
+    <div class="container py-5"></div>
+    <div class="container py-5"></div>
 
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-
-                <div class="grid text-center">
-                    <div class="g-col-6">
-                        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                    </div>
-                    <div class="g-col-6">
-                        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row position-relative wrapper-comments-page">
+                <div class="col-md-6 col-lg-4">
+                    <p>I've been going to this barbershop for years, and I wouldn't trust anyone else with my hair. The barbers are skilled and knowledgeable, and they always keep up with the latest trends and techniques. The shop is always clean and well-maintained, and they take hygiene seriously, which is especially important these days. I leave feeling refreshed and confident after every visit. Highly recommended! I leave feeling refreshed and confident after every visit. Highly recommended!</p>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <p>I've been going to this barbershop for years, and I wouldn't trust anyone else with my hair. The barbers are skilled and knowledgeable, and they always keep up with the latest trends and techniques.</p>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <p>I've been going to this barbershop for years, and I wouldn't trust anyone else with my hair. The barbers are skilled and knowledgeable, and they always keep up with the latest trends and techniques. The shop is always clean and well-maintained, and they take hygiene seriously, which is especially important these days. I leave feeling refreshed and confident after every visit. Highly recommended! I leave feeling refreshed and confident after every visit. Highly recommended! The shop is always clean and well-maintained, and they take hygiene seriously, which is especially important these days. I leave feeling refreshed and confident after every visit. Highly recommended! I leave feeling refreshed and confident after every visit. Highly recommended!</p>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <p>I've been going to this barbershop for years, and I wouldn't trust anyone else with my hair. The barbers are skilled and knowledgeable, and they always keep up with the latest trends and techniques. The shop is always clean and well-maintained, and they take hygiene seriously, which is especially important these days. I leave feeling refreshed and confident after every visit. Highly recommended!</p>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <p>I've been going to this barbershop for years, and I wouldn't trust anyone else with my hair. The barbers are skilled and knowledgeable, and they always keep up with the latest trends and techniques. The shop is always clean and well-maintained, and they take hygiene seriously, which is especially important these days. I leave feeling refreshed and confident after every visit. Highly recommended! I leave feeling refreshed and confident after every visit. Highly recommended! I leave feeling refreshed and confident after every visit. Highly recommended!</p>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <p>I've been going to this barbershop for years, and I wouldn't trust anyone else with my hair. The barbers are skilled and knowledgeable, and they always keep up with the latest trends and techniques.</p>
                 </div>
             </div>
-            <div class="g-col-6">
-                <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-            </div>
-    
         </div>
     </div>
 
-
-    <div class="container py-5"></div>
-    <div class="container py-5"></div>
-    <div class="container py-5"></div>
-
-
+    <script>
+        const arrayComments = document.querySelectorAll(".wrapper-comments-page > div");
+        let aux = 3;
+        arrayComments.forEach((item,index)=>{
+            item.style.position = "absolute";
+            if(arrayComments[index-aux]) item.style.top = `${arrayComments[index-aux].scrollHeight}px`;
+            if((index+1)%aux===1) item.style.left = `0%`;
+            if((index+1)%aux===2) item.style.left = `${100/3}%`;
+            if((index+1)%aux===0) item.style.left = `${100/3*2}%`;
+            
+        });
+    </script>
 
     <div class="container py-5"></div>
     <div class="container py-5"></div>
