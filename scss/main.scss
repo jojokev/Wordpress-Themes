@@ -29,10 +29,10 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 $enable-cssgrid: true;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import '../node_modules/aos/dist/aos.css';
+@import '../node_modules/aos/src/sass/aos.scss';
 @import '../node_modules/glightbox/dist/css/glightbox.min.css';
 @import './mixins.scss';
-@import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons.scss';
 
 *{
     margin: 0;

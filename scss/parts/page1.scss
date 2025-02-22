@@ -64,10 +64,15 @@ $oscuro: #000;
     }
 }
 
-//
+// comments page
 
 .wrapper-comments-page{
-    >div{
+
+    .content{
+        padding: 1rem;
         border: 1px solid #f00;
+        p{
+            margin: 0;
+        }
     }
 }
