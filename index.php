@@ -663,35 +663,101 @@
 
     
         function cuadroPromise(valor){
-            if (typeof valor !== "number") return Promise.reject("Valor no aceptado")
-            return new Promise((resolve,reject)=>{
-                setTimeout(()=>{
-                    resolve(
-                        {
-                            valor,
-                            resultado: valor *valor
-                        }
-                    );
-                }, 0 | Math.random()*1500)
-            });
+           if (typeof valor !== "number") return Promise.reject("Valor no aceptado")
+           return new Promise((resolve,reject)=>{
+               setTimeout(()=>{
+                   resolve(
+                       {
+                           valor,
+                           resultado: valor *valor
+                       }
+                   );
+               }, 0 | Math.random()*1500)
+           });
         }
 
         // Promise
-        cuadroPromise(2)
-        .then(e=>{
-            //console.log("start promise");
-            //console.log(`Datos ${e.valor} y ${e.resultado}`);
-            return cuadroPromise(3);
-        })
-        .then(e=>{
-            //console.log(`Datos ${e.valor} y ${e.resultado}`);
-            return cuadroPromise(4);
-        })
-        .then(e=>{
-            //console.log(`Datos ${e.valor} y ${e.resultado}`);
-        })
-        .catch(e=> console.error(e));
+        //cuadroPromise(2)
+        //.then(e=>{
+        //    //console.log("start promise");
+        //    //console.log(`Datos ${e.valor} y ${e.resultado}`);
+        //    return cuadroPromise(3);
+        //})
+        //.then(e=>{
+        //    //console.log(`Datos ${e.valor} y ${e.resultado}`);
+        //    return cuadroPromise(4);
+        //})
+        //.then(e=>{
+        //    //console.log(`Datos ${e.valor} y ${e.resultado}`);
+        //})
+        //.catch(e=> console.error(e));
 
+        async function functionAsincrona() {
+            try {
+                console.log("Start");
+
+                let obj1 = await cuadroPromise(2    );
+                console.log(`Datos ${obj1.valor} y ${obj1.resultado}`);
+
+                let obj2 = await cuadroPromise(obj1.resultado);
+                console.log(`Datos ${obj2.valor} y ${obj2.resultado}`);
+
+                let obj3 = await cuadroPromise(obj2.resultado);
+                console.log(`Datos ${obj3.valor} y ${obj3.resultado}`);
+
+                console.log("End");
+
+            } catch (e) {
+                
+            }
+        }
+
+        //functionAsincrona();
+
+        const functionAsincrona2 = async () => {
+            try {
+                console.log("Start");
+
+                let obj1 = await cuadroPromise(3);
+                console.log(`Datos ${obj1.valor} y ${obj1.resultado}`);
+
+                let obj2 = await cuadroPromise(obj1.resultado);
+                console.log(`Datos ${obj2.valor} y ${obj2.resultado}`);
+
+                let obj3 = await cuadroPromise(obj2.resultado);
+                console.log(`Datos ${obj3.valor} y ${obj3.resultado}`);
+
+                console.log("End");
+
+            } catch (e) {
+                console.warn(e)
+            }
+        }
+
+        //functionAsincrona2();
+
+        let id = Symbol("id");
+        let id2 = Symbol("id2");
+
+        //console.log(id === id2)
+        //console.log(id)
+        //console.log(typeof id)
+
+        //const sett = new Set([1,2,3,4,56,7,8,9,1,23,4,5,6,7,8,9]);
+
+        //console.log(sett);
+        //console.log([...sett][1]);
+        //
+        //sett.delete(56);
+        //console.log(sett.keys);
+
+        //console.log(sett.has(56));
+
+        //sett.clear();
+        //console.log(sett);
+
+
+        
     </script>
 
     <div class="container py-5"></div>
@@ -823,16 +889,6 @@
             </div>
         </nav>
     </section>
-
-    <script src="./node_modules/glightbox/dist/js/glightbox.min.js"> </script>
-
-    <a href="./images/airbnb-link.png" class="glightbox">
-        <img src="./images/airbnb-link.png" alt="image" />
-    </a>
-
-    <a href="./images/paquetes machupicchu.webp" class="glightbox">
-        <img src="./images/airbnb-link.png" alt="image" />
-    </a>
 
     <div class="container py-5"></div>
     <div class="container py-5"></div>
@@ -1173,5 +1229,261 @@
     <div class="container py-5"></div>
     <div class="container py-5"></div>
     <div class="container py-5"></div>
+
+    <div class="container-fluid content-svg">
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'><rect fill='#ee5522' width='2000' height='1500'/><defs><radialGradient id='a' gradientUnits='objectBoundingBox'><stop  offset='0' stop-color='#FB3'/><stop  offset='1' stop-color='#ee5522'/></radialGradient><linearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='750' x2='1550' y2='750'><stop  offset='0' stop-color='#f7882b'/><stop  offset='1' stop-color='#ee5522'/></linearGradient><path id='s' fill='url(#b)' d='M1549.2 51.6c-5.4 99.1-20.2 197.6-44.2 293.6c-24.1 96-57.4 189.4-99.3 278.6c-41.9 89.2-92.4 174.1-150.3 253.3c-58 79.2-123.4 152.6-195.1 219c-71.7 66.4-149.6 125.8-232.2 177.2c-82.7 51.4-170.1 94.7-260.7 129.1c-90.6 34.4-184.4 60-279.5 76.3C192.6 1495 96.1 1502 0 1500c96.1-2.1 191.8-13.3 285.4-33.6c93.6-20.2 185-49.5 272.5-87.2c87.6-37.7 171.3-83.8 249.6-137.3c78.4-53.5 151.5-114.5 217.9-181.7c66.5-67.2 126.4-140.7 178.6-218.9c52.3-78.3 96.9-161.4 133-247.9c36.1-86.5 63.8-176.2 82.6-267.6c18.8-91.4 28.6-184.4 29.6-277.4c0.3-27.6 23.2-48.7 50.8-48.4s49.5 21.8 49.2 49.5c0 0.7 0 1.3-0.1 2L1549.2 51.6z'/><g id='g'><use href='#s' transform='scale(0.12) rotate(60)'/><use href='#s' transform='scale(0.2) rotate(10)'/><use href='#s' transform='scale(0.25) rotate(40)'/><use href='#s' transform='scale(0.3) rotate(-20)'/><use href='#s' transform='scale(0.4) rotate(-30)'/><use href='#s' transform='scale(0.5) rotate(20)'/><use href='#s' transform='scale(0.6) rotate(60)'/><use href='#s' transform='scale(0.7) rotate(10)'/><use href='#s' transform='scale(0.835) rotate(-40)'/><use href='#s' transform='scale(0.9) rotate(40)'/><use href='#s' transform='scale(1.05) rotate(25)'/><use href='#s' transform='scale(1.2) rotate(8)'/><use href='#s' transform='scale(1.333) rotate(-60)'/><use href='#s' transform='scale(1.45) rotate(-30)'/><use href='#s' transform='scale(1.6) rotate(10)'/></g></defs><g  transform='translate(1000 0)'><g  transform='translate(0 750)'><circle fill='url(#a)' r='3000'/><g opacity='0.5'><circle fill='url(#a)' r='2000'/><circle fill='url(#a)' r='1800'/><circle fill='url(#a)' r='1700'/><circle fill='url(#a)' r='1651'/><circle fill='url(#a)' r='1450'/><circle fill='url(#a)' r='1250'/><circle fill='url(#a)' r='1175'/><circle fill='url(#a)' r='900'/><circle fill='url(#a)' r='750'/><circle fill='url(#a)' r='500'/><circle fill='url(#a)' r='380'/><circle fill='url(#a)' r='250'/></g><g  transform='rotate(-360 0 0)'><use href='#g' transform='rotate(10)'/><use href='#g' transform='rotate(120)'/><use href='#g' transform='rotate(240)'/></g><circle fill-opacity='0' fill='url(#a)' r='3000'/></g></g></svg>
+    </div>
+
+    
+    <div class="container py-5"></div>
+    <div class="container py-5"></div>
+    <div class="container py-5"></div>
+
+
+    <div class="container">
+        <div class="card border-1 mt-2 rounded-0 d-none" id="wrapper-travellers-cards-clone">
+            <div class="card-header m-0 px-2 py-3 bg-white border-bottom-dotted">
+                <h2 class="fw-bold fs-6 mb-0 text-primary">PASSENGER INFORMATION</h2>
+            </div>
+            <div class="card-body" id-base="item-travellers-card-" id="item-travellers-card-clone">
+                <div class="row mb-3 pb-3 border-bottom border-primary">
+                    <div class="col-11 fw-bold" id="title-traveller">PASSENGER 1</div>
+                    <div class="col-1 d-flex justify-content-end"><a class="btn btn-close buttonFormSearch" id-base="close-traveller-" id="close-traveller-0" id-form="0"></a></div>
+                </div>
+                <div class="row gy-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Full Name</label>
+                        <input type="text" class="form-control rounded-0" base-name="travellers-name-" name="travellers-name-0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email" class="form-control rounded-0" base-name="travellers-email-" name="travellers-email-0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Country</label>
+                        <input type="text" class="form-control rounded-0" base-name="travellers-country-" name="travellers-country-0" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Doc. Type</label>
+                        <select type="text" class="form-control rounded-0" base-name="travellers-doc-type-" name="travellers-doc-type-0" required>
+                            <option value="value1" selected>Passport</option>
+                            <option value="value1">DNI / ID</option>
+                            <option value="value1">Driver Licence</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Passport Number</label>
+                        <input type="text" class="form-control rounded-0" base-name="travellers-doc-" name="travellers-doc-0" required>         
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Date of Birth</label>
+                        <input type="text" class="form-control rounded-0" id="datebirthday" base-name="travellers-doc-" name="travellers-doc-0" required>         
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold w-100">Gender</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-geneder-" name="travellers-geneder-0"
+                                id="inlineRadio1" value="Male" checked>
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-geneder-" name="travellers-geneder-0"
+                                id="inlineRadio2" value="Female">
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold w-100">Are you a student?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-student-" name="travellers-student-0"
+                                id="inlineRadio1" value="Yes">
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-student-" name="travellers-student-0"
+                                id="inlineRadio2" value="No" checked>
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold w-100">Food Restrictions / Allergies?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-restrictions-" name="travellers-restrictions-0"
+                                id="inlineRadio1" value="Yes">
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-restrictions-" name="travellers-restrictions-0"
+                                id="inlineRadio2" value="No" checked>
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-1 mt-2 rounded-0" id="wrapper-travellers-cards">
+            <div class="card-header m-0 px-2 py-3 bg-white border-bottom-dotted">
+                <h2 class="fw-bold fs-6 mb-0 text-primary">PASSENGER INFORMATION</h2>
+            </div>
+            <div class="card-body" id-base="item-travellers-card-" id="item-travellers-card-0">
+                <div class="row mb-3 pb-3 border-bottom border-primary">
+                    <div class="col-11 fw-bold" id="title-traveller">PASSENGER 1</div>
+                    <div class="col-1 d-flex justify-content-end"><a class="btn btn-close buttonFormSearch" id-base="close-traveller-" id="close-traveller-0" id-form="0"></a></div>
+                </div>
+                <div class="row gy-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Full Name</label>
+                        <input type="text" class="form-control rounded-0" base-name="travellers-name-" name="travellers-name-0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email" class="form-control rounded-0" base-name="travellers-email-" name="travellers-email-0" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Country</label>
+                        <input type="text" class="form-control rounded-0" base-name="travellers-country-" name="travellers-country-0" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Doc. Type</label>
+                        <select type="text" class="form-control rounded-0" base-name="travellers-doc-type-" name="travellers-doc-type-0" required>
+                            <option value="value1" selected>Passport</option>
+                            <option value="value1">DNI / ID</option>
+                            <option value="value1">Driver Licence</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Passport Number</label>
+                        <input type="text" class="form-control rounded-0" base-name="travellers-doc-" name="travellers-doc-0" required>         
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Date of Birth</label>
+                        <input type="text" class="form-control rounded-0" id="datebirthday" base-name="travellers-doc-" name="travellers-doc-0" required>         
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold w-100">Gender</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-geneder-" name="travellers-geneder-0"
+                                id="inlineRadio1" value="Male" checked>
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-geneder-" name="travellers-geneder-0"
+                                id="inlineRadio2" value="Female">
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold w-100">Are you a student?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-student-" name="travellers-student-0"
+                                id="inlineRadio1" value="Yes">
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-student-" name="travellers-student-0"
+                                id="inlineRadio2" value="No" checked>
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold w-100">Food Restrictions / Allergies?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-restrictions-" name="travellers-restrictions-0"
+                                id="inlineRadio1" value="Yes">
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" base-name="travellers-restrictions-" name="travellers-restrictions-0"
+                                id="inlineRadio2" value="No" checked>
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end my-3">
+            <button id="add-traveler" class="btn btn-primary">
+                <i class="bi bi-person-plus-fill"></i> Travel
+            </button>
+        </div>
+    </div>
+       
+    <script>
+        //selecionar botones y formulario
+        let buttomAddTraveler = document.querySelector("#add-traveler");
+        let itemTraveler = document.querySelector("#item-travellers-card-clone");
+        let itemInitTraveler = document.querySelector("#item-travellers-card-0");
+        let wrapperTraveler = document.querySelector("#wrapper-travellers-cards");
+
+        //variables
+        let arrayForms = [itemInitTraveler];
+        let valorItemsTraveler = 1;
+
+        // colocar un id a cada campo de un form
+        const idFormFields = (form,id)=>{
+            let inputClone = form.querySelectorAll("input");
+            inputClone.forEach(item=>{
+                item.setAttribute("name",item.getAttribute("base-name")+id);
+            });
+        }
+        //actualizar valores
+        const updateFormsField = (arrayForm=[])=>{
+            arrayForms.forEach((form,index)=>{
+                idFormFields(form,index); // actualizar inputs
+                form.id = form.getAttribute("id-base") + (index); // actualizar nuevo id al form
+                let titleForm = form.querySelector("#title-traveller"); // actualizar titulo del form
+                titleForm.textContent = "PASSENGER " + (index+1);
+                // Id del buttom close y cerrar
+                let buttonClose = form.querySelector(".buttonFormSearch");
+                buttonClose.setAttribute("id-form",(index));
+                buttonClose.id = buttonClose.getAttribute("id-base") + (index);
+            });
+        }
+        // eliminar un form
+        const deleteForm = (id) => {
+            let form = document.querySelector("#item-travellers-card-"+id);
+            if(form && arrayForms.length>1) {
+                form.remove();
+                arrayForms.splice(id,1);
+                valorItemsTraveler--;
+                updateFormsField(arrayForms);
+            }
+        }
+
+        let buttonClose = itemInitTraveler.querySelector(".buttonFormSearch");
+        buttonClose.addEventListener("click",()=>{
+            deleteForm(buttonClose.getAttribute("id-form"));
+        })
+        //agregar formularios
+        buttomAddTraveler.addEventListener("click",()=>{
+            // clone form y agregar Id
+            let auxClone = itemTraveler.cloneNode(true);
+            auxClone.id = auxClone.getAttribute("id-base") + valorItemsTraveler;
+            // Id del buttom close y cerrar
+            let buttonClose = auxClone.querySelector(".buttonFormSearch");
+            buttonClose.setAttribute("id-form",valorItemsTraveler);
+            buttonClose.id = buttonClose.getAttribute("id-base") + valorItemsTraveler;
+            buttonClose.addEventListener("click",()=>{
+                deleteForm(buttonClose.getAttribute("id-form"));
+            })
+            //Id de los campos agregados
+            idFormFields(auxClone,valorItemsTraveler);
+            //titulo del form
+            let titleForm = auxClone.querySelector("#title-traveller");
+            titleForm.textContent = "PASSENGER " + (valorItemsTraveler+1);
+            arrayForms.push(auxClone);
+            wrapperTraveler.appendChild(auxClone);
+            valorItemsTraveler++;
+
+        });
+
+    </script>
+
+
+
+    <div class="container py-5"></div>
+    <div class="container py-5"></div>
+    <div class="container py-5"></div>
+
 </body>
 </html>
